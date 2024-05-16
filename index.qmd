@@ -103,17 +103,4 @@ gapminder |> filter(year == 2007) |> ggplot(aes(x= gdpPercap, y = lifeExp))+ geo
 gapminder |> filter(year == 2007) |> ggplot(aes(x= gdpPercap, y = lifeExp, colour = continent))+ geom_point()+ geom_smooth(method = "lm")
 ```
 
-```{r}
-#| label: ggplot2-06
-#| message: false
-#| warning: false
 
-#grafico de dispercion que se muestre la relacion entre 
-#el pib por capita(x) y el nivel de esperanza de vida (y) para el año 2007 
-
-gapminder |> filter(year == 2007) |> ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) + geom_point() + geom_smooth(method = "lm") + ggtitle("reLacion entre el pib per capita y esperanza de vida en 2007") + xlab("PIB per capita(EEUU $)") + ylab ("Esperanza de vida (Años)") + labs(color = "continentes")
-```
-
-```{r}
-
-```
