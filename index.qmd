@@ -1,0 +1,119 @@
+---
+title: "ejemplos-ggplot2"
+author: "bernardo aguilar"
+format: html
+editor: visual
+toc: true
+lang: es 
+theme: yeti
+---
+
+#cargar datos
+
+```{r}
+#|label: carga de datos
+
+  
+library("tidyverse")
+
+library("DT")
+
+library("gapminder")
+
+
+
+```
+
+# ggplot2
+
+```{r}
+#| label: ggplot2-01
+
+ggplot(data = mpg)+ geom_point(aes(x = displ, y = hwy))
+```
+
+```{r}
+#| label: ggplot2-02
+
+mpg |> 
+  ggplot(aes(x = displ, y = hwy, color = class)) + geom_point()
+```
+
+```{r}
+#| label: ggplot2-02
+
+mpg |> 
+  ggplot(aes(x = displ, y = hwy, shape = class, color = class)) + geom_point()
+```
+
+```{r}
+# Gráfico de dispersión de cilindrada vs millas por galón en autopista
+# con formas y colores correspondientes al tipo de automóvil
+mpg |>
+  ggplot(aes(x = displ, y = hwy, shape = class, color = class)) +
+  geom_point() +
+  scale_shape_manual(values = c(0, 1, 2, 3, 4, 5, 6)) +
+  scale_color_manual(values = c("red", "blue", "green", "purple", "orange", "brown", "pink"))
+```
+
+```{r}
+#| label: ggplot2-06
+
+#grafico de dispercion que se muestre la relacion entre 
+#el pib por capita(x) y el nivel de esperanza de vida (y)
+
+gapminder |> ggplot(aes(x= gdpPercap, y = lifeExp))+ geom_point()
+```
+
+```{r}
+#| label: ggplot2-06
+
+#grafico de dispercion que se muestre la relacion entre 
+#el pib por capita(x) y el nivel de esperanza de vida (y) para el año 2007
+
+gapminder |> filter(year == 2007) |> ggplot(aes(x= gdpPercap, y = lifeExp,))+ geom_point()
+```
+
+```{r}
+#| label: ggplot2-06
+
+#grafico de dispercion que se muestre la relacion entre 
+#el pib por capita(x) y el nivel de esperanza de vida (y) para el año 2007 y coloreado por contiente
+
+gapminder |> filter(year == 2007) |> ggplot(aes(x= gdpPercap, y = lifeExp,color = continent ))+ geom_point()
+```
+
+```{r}
+#| label: ggplot2-06
+
+#grafico de dispercion que se muestre la relacion entre 
+#el pib por capita(x) y el nivel de esperanza de vida (y) para el año 2007 
+
+gapminder |> filter(year == 2007) |> ggplot(aes(x= gdpPercap, y = lifeExp))+ geom_point()+ geom_smooth(method = "lm")
+```
+
+```{r}
+#| label: ggplot2-06
+#| message: false
+#| warning: false
+
+#grafico de dispercion que se muestre la relacion entre 
+#el pib por capita(x) y el nivel de esperanza de vida (y) para el año 2007 
+
+gapminder |> filter(year == 2007) |> ggplot(aes(x= gdpPercap, y = lifeExp, colour = continent))+ geom_point()+ geom_smooth(method = "lm")
+```
+
+```{r}
+#| label: ggplot2-06
+#| message: false
+#| warning: false
+
+#grafico de dispercion que se muestre la relacion entre 
+#el pib por capita(x) y el nivel de esperanza de vida (y) para el año 2007 
+
+gapminder |> filter(year == 2007) |> ggplot(aes(x = gdpPercap, y = lifeExp, colour = continent)) + geom_point() + geom_smooth(method = "lm") + ggtitle("reLacion entre el pib per capita y esperanza de vida en 2007") + xlab("PIB per capita(EEUU $)") + ylab ("Esperanza de vida (Años)") + labs(color = "continentes")
+```
+
+```{r}
+
+```
